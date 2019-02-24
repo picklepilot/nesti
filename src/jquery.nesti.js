@@ -184,12 +184,12 @@
 			{
 				var _self = this;
 
-				$(_self.element).find(".fa-minus").on("click", function () {
+				$(_self.element).find(".nesti-toggle-collapse").on("click", function () {
 					var currentCheckboxParentLI = $(this).closest("li");
 					_self.collapse(currentCheckboxParentLI);
 				});
 
-				$(_self.element).find(".fa-plus").on("click", function () {
+				$(_self.element).find(".nesti-toggle-expand").on("click", function () {
 					var currentCheckboxParentLI = $(this).closest("li");
 					_self.expand(currentCheckboxParentLI);
 				});
