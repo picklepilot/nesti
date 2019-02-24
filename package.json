@@ -42,7 +42,8 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-qunit": "^0.1.5",
     "phantomjs": "^1.9.18",
-    "qunitjs": "^1.19.0"
+    "qunitjs": "^1.19.0",
+    "request": ">=2.68.0"
   },
   "scripts": {
     "jscs": "jscs src",
