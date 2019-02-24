@@ -32,7 +32,6 @@
 		 */
 		var pluginName = "nesti",
 			defaults = {
-				propertyName: "value",
 				filterable: false,
 				collapse: {
 					enabled: false,
@@ -383,8 +382,8 @@
 
 				var newHTML = $(this._html.join(""));
 				newHTML.first("ul").attr("id", this.element.id);
+				document.getElementById(this.element.id).innerHTML = newHTML.html();
 				this._dressElement();
-				document.getElementById(this.element.id).innerHTML = newHTML.wrap("<div/>").parent().html();
 				this.initHandlers();
 			},
 
@@ -405,9 +404,8 @@
 			_listItemTemplate (child, i)
 			{
 				var html = (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
-					"<label class=\"text-small\">" +
-					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + child.value + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" />" + child.label +
-					"</label>";
+					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + child.value + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" />" +
+					"<label class=\"text-small\" for=\"" + this._slugify(child.label) + "-" + i + "\">" + child.label + "</label>";
 				return html;
 			},
 
