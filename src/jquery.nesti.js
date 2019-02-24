@@ -24,7 +24,6 @@
 		 */
 		var pluginName = "nesti",
 			defaults = {
-				propertyName: "value",
 				filterable: false,
 				collapse: {
 					enabled: false,
