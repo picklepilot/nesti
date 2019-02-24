@@ -20,30 +20,89 @@ The list structure _*must*_ match the following example:
 ```HTML
 <ul id="list">
     <li>
-        <input type="checkbox" data-value="Coffee"> <label>Coffee</label>
+        <input type="checkbox" data-value="Acer" id="acer"> 
+        <label for="acer">Acer</label>
     </li>
     <li>
         <i class="fas fa-minus text-small"></i>
-        <input type="checkbox" data-value="Tea"> <label>Tea</label>
+        <input type="checkbox" data-value="Apple" id="apple"> 
+        <label for="apple">Apple</label>
         <ul>
             <li>
                 <i class="fas fa-minus text-small"></i>
-                <input type="checkbox" data-value="Stinker pot"> <label>Black tea</label>
+                <input type="checkbox" data-value="Asus" id="asus"> 
+                <label for="asus">Asus</label>
                 <ul>
-                    <li><input type="checkbox" data-value="Black tea"> <label>Black tea</label></li>
-                    <li><input type="checkbox" data-value="Green tea"> <label>Green tea</label></li>
+                    <li>
+                        <input type="checkbox" data-value="Dell" id="dell"> 
+                        <label for="dell">Dell</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" data-value="Google" id="google"> 
+                        <label for="google">Google</label>
+                    </li>
                 </ul>
             </li>
             <li>
-                <input type="checkbox" data-value="Green tea"> <label>Green tea</label>
+                <input type="checkbox" data-value="HP" id="hp"> 
+                <label for="hp">HP</label>
             </li>
         </ul>
     </li>
     <li>
-        <input type="checkbox" data-value="Milk"> <label>Milk</label>
+        <input type="checkbox" data-value="Lenovo" id="lenovo"> 
+        <label for="lenovo">Lenovo</label>
     </li>
 </ul>
 ```
+
+And then instantiate the plugin on the root list item, _always with an ID_.
+```javascript
+$("#list").nesti({
+    filterable: true,
+    collapse: {
+        enabled: true
+    }
+});
+```
+
+######...Or let Nesti build the tree structure internally (from a reputable source of course)
+```javascript
+$("#list2").nesti("api.buildList", [
+    {
+        label: 'Acer',
+        value: 'acer',
+        items: null
+    },
+    {
+        label: 'Apple',
+        value: 'apple',
+        items: [
+            {
+                label: 'Asus',
+                value: 'asus',
+                items: [...]
+            }
+        ]
+    }
+]);
+```
+
+> Note: The data that is fed into the `api.buildList` call must always follow the structure and field naming as above.
+
+###2. Supply the `onChange` callback
+```javascript
+$("#list").nesti({
+    filterable: true,
+    collapse: {
+        enabled: true
+    },
+    onChange: () => {
+        console.log("DO THE CALLBACK DANCE.");
+    }
+});
+```
+
 
 
 ##Built With 
