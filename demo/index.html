@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nesti</title>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../src/jquery.nesti.js"></script>
+	</head>
+	<body>
+		<ul id="list">
+			<li>
+				<input type="checkbox" data-value="Coffee"> <label>Coffee</label>
+			</li>
+			<li>
+				<i class="fas fa-minus text-small"></i>
+				<input type="checkbox" data-value="Tea"> <label>Tea</label>
+				<ul>
+					<li>
+						<i class="fas fa-minus text-small"></i>
+						<input type="checkbox" data-value="Stinker pot"> <label>Black tea</label>
+						<ul>
+							<li><input type="checkbox" data-value="Black tea"> <label>Black tea</label></li>
+							<li><input type="checkbox" data-value="Green tea"> <label>Green tea</label></li>
+						</ul>
+					</li>
+					<li>
+						<input type="checkbox" data-value="Green tea"> <label>Green tea</label>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<input type="checkbox" data-value="Milk"> <label>Milk</label>
+			</li>
+		</ul>
+
+		<ul id="list2"></ul>
+
+
+		<script>
+			$(function() {
+				$("#list").nesti({
+					propertyName: "a custom value",
+					filterable: true,
+					onChange: () => {
+						console.log('DO THINGS!');
+					}
+				});
+
+				$("#list2").nesti({
+					propertyName: "a custom value",
+					filterable: true,
+					collapse: {
+						enabled: true,
+						template: ""
+					}
+				});
+				$("#list2").nesti("api.buildList", [
+					{
+						label: "Apple",
+						value: "apple",
+						items: null
+					},
+					{
+						label: "Banana",
+						value: "banana",
+						items: [
+							{
+								label: "Cookie",
+								value: "cookie",
+								items: [
+									{
+										label: "Donut",
+										value: "donut",
+										items: null
+									}
+								]
+							},
+							{
+								label: "Eggroll",
+								value: "eggroll",
+								items: null
+							}
+						]
+					}
+				])
+			});
+		</script>
+	</body>
+</html>
