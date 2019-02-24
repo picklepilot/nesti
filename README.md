@@ -1,19 +1,19 @@
 # nesti
 A straight forward plugin for adding some very helpful functionalities to nested/tree structure checkbox lists. It was born out of the desire to stop re-writing tree logic in multiple ways and try to consistify the way this is handled. This plugin is built leveraging the https://github.com/jquery-boilerplate/jquery-boilerplate repo (with some minor updates to the boilerplate).
 
-##Features
+## Features
 * Build and display nested tree select structures 
 * Logic to handle the three states of a checkbox
 * Optional filtering (via text search) 
 * Public api for accessing elements and building a list tree structure dynamically
 
-##Dependencies
+## Dependencies
 * jQuery >=1.5.1
 * Font Awesome (or whatever icon library you use considering custom toggle elements is an option)
 
-##Getting Started
-###1. Create the tree structure in one of two available ways:
-######The "Classic" Way
+## Getting Started
+### 1. Create the tree structure in one of two available ways:
+###### The "Classic" Way
 Manually create the list _before_ 
 
 The list structure _*must*_ match the following example:
@@ -66,7 +66,7 @@ $("#list").nesti({
 });
 ```
 
-######...Or let Nesti build the tree structure internally (from a reputable source of course)
+###### ...Or let Nesti build the tree structure internally (from a reputable source of course)
 ```javascript
 $("#list2").nesti("api.buildList", [
     {
@@ -90,7 +90,7 @@ $("#list2").nesti("api.buildList", [
 
 > Note: The data that is fed into the `api.buildList` call must always follow the structure and field naming as above.
 
-###2. Supply the `onChange` callback
+### 2. Supply the `onChange` callback
 ```javascript
 $("#list").nesti({
     filterable: true,
@@ -105,5 +105,5 @@ $("#list").nesti({
 
 
 
-##Built With 
+## Built With 
 * [jQuery Boilerplate](https://github.com/jquery-boilerplate/jquery-boilerplate) - A wonderful, and well-trusted starter boilerplate for jQuery plugins of all different requirements.
