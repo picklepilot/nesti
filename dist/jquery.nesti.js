@@ -1,5 +1,5 @@
 /*
- *  picklepilot-nesti - v0.0.1
+ *  nesti - v0.0.1
  *  A straight forward plugin for adding some very helpful functionalities to nested/tree structure checkbox lists.
  *  http://jkaczmar.com
  *
@@ -82,8 +82,8 @@
 				"api.filter": function (str) {
 					this.filter(str);
 				},
-				"api.buildList": function (data) {
-					this.buildList(data);
+				"api.buildList": function (data, labelsAsValues = false) {
+					this.buildList(data, labelsAsValues);
 				}
 			};
 
@@ -373,12 +373,12 @@
 			 * }
 			 * @param data
 			 */
-			buildList: function (data)
+			buildList: function (data, labelsAsValues = false)
 			{
 				/**
 				 * Make the UL structure.
 				 */
-				this._makeTier(data);
+				this._makeTier(data, labelsAsValues);
 
 				var newHTML = $(this._html.join(""));
 				newHTML.first("ul").attr("id", this.element.id);
@@ -387,24 +387,24 @@
 				this.initHandlers();
 			},
 
-			_makeTier: function (items)
+			_makeTier: function (items, labelsAsValues)
 			{
 				this._html.push("<ul>");
 				items.forEach((child, i) => {
 					this._html.push("<li>");
-					this._html.push(this._listItemTemplate(child, i));
+					this._html.push(this._listItemTemplate(child, i, labelsAsValues));
 					if (child.items) {
-						this._makeTier(child.items);
+						this._makeTier(child.items, labelsAsValues);
 					}
 					this._html.push("</li>");
 				});
 				this._html.push("</ul>");
 			},
 
-			_listItemTemplate (child, i)
+			_listItemTemplate (child, i, labelsAsValues)
 			{
 				var html = (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
-					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + child.value + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" />" +
+					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" />" +
 					"<label class=\"text-small\" for=\"" + this._slugify(child.label) + "-" + i + "\">" + child.label + "</label>";
 				return html;
 			},
