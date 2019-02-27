@@ -33,6 +33,16 @@
 		var pluginName = "nesti",
 			defaults = {
 				filterable: false,
+				filter: {
+					css: {
+						position: "sticky",
+						top: 0,
+						width: "100%",
+						padding: "6px 10px",
+						border: "none",
+						boxSizing: "border-box"
+					}
+				},
 				collapse: {
 					enabled: false,
 					speed: 250,
@@ -133,7 +143,7 @@
 			_dressElement: function ()
 			{
 				this.tree.css("list-style", "none");
-				this.tree.css("padding-left", 0);
+				//this.tree.css("padding-left", 0);
 				this.tree.find("ul").css("list-style", "none");
 			},
 
@@ -211,7 +221,9 @@
 			 */
 			_makeFilter: function () {
 				var _self = this;
-				$("<input type=\"text\" class=\"form-control form-control-sm\" placeholder=\"Find a filter..\" style=\"position: sticky; top: 0px;\" id=\"" + this._targetId + "-filter-input\">").insertBefore(this.element);
+				$("<input type=\"text\" class=\"form-control form-control-sm\" placeholder=\"Find a filter..\" id=\"" + this._targetId + "-filter-input\">")
+					.css(_self.settings.filter.css)
+					.insertBefore(this.element);
 				$("#" + this._targetId + "-filter-input").on("keyup", function () {
 					_self.filter($(this).val());
 				});
