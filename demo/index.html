@@ -7,33 +7,39 @@
 		<script src="../src/jquery.nesti.js"></script>
 	</head>
 	<body>
-		<ul id="list">
-			<li>
-				<input type="checkbox" data-value="Coffee"> <label>Coffee</label>
-			</li>
-			<li>
-				<i class="fas fa-minus text-small"></i>
-				<input type="checkbox" data-value="Tea"> <label>Tea</label>
-				<ul>
-					<li>
-						<i class="fas fa-minus text-small"></i>
-						<input type="checkbox" data-value="Stinker pot"> <label>Black tea</label>
-						<ul>
-							<li><input type="checkbox" data-value="Black tea"> <label>Black tea</label></li>
-							<li><input type="checkbox" data-value="Green tea"> <label>Green tea</label></li>
-						</ul>
-					</li>
-					<li>
-						<input type="checkbox" data-value="Green tea"> <label>Green tea</label>
-					</li>
-				</ul>
-			</li>
-			<li>
-				<input type="checkbox" data-value="Milk"> <label>Milk</label>
-			</li>
-		</ul>
 
-		<ul id="list2"></ul>
+		<div style="background: #ededed; max-width: 350px; height: 250px; overflow: scroll; margin-bottom: 30px;">
+			<ul id="list" style="padding: 10px; padding-top: 0;">
+				<li>
+					<input type="checkbox" data-value="Coffee"> <label>Coffee</label>
+				</li>
+				<li>
+					<i class="fas fa-minus text-small"></i>
+					<input type="checkbox" data-value="Tea"> <label>Tea</label>
+					<ul>
+						<li>
+							<i class="fas fa-minus text-small"></i>
+							<input type="checkbox" data-value="Stinker pot"> <label>Black tea</label>
+							<ul>
+								<li><input type="checkbox" data-value="Black tea"> <label>Black tea</label></li>
+								<li><input type="checkbox" data-value="Green tea"> <label>Green tea</label></li>
+							</ul>
+						</li>
+						<li>
+							<input type="checkbox" data-value="Green tea"> <label>Green tea</label>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<input type="checkbox" data-value="Milk"> <label>Milk</label>
+				</li>
+			</ul>
+		</div>
+
+		<div style="background: #293751; color: white; max-width: 350px; height: 250px; overflow: scroll;">
+			<ul id="list2" style="padding: 10px; padding-top: 0;"></ul>
+		</div>
+
 
 
 		<script>
@@ -41,6 +47,16 @@
 				$("#list").nesti({
 					propertyName: "a custom value",
 					filterable: true,
+					filter: {
+						css: {
+							position: 'sticky',
+							top: 0,
+							width: '100%',
+							padding: '10px 10px',
+							border: 'none',
+							background: '#dddddd'
+						}
+					},
 					onChange: () => {
 						console.log('DO THINGS!');
 					}
@@ -49,6 +65,17 @@
 				$("#list2").nesti({
 					propertyName: "a custom value",
 					filterable: true,
+					filter: {
+						css: {
+							position: 'sticky',
+							top: 0,
+							width: '100%',
+							padding: '10px 10px',
+							border: 'none',
+							background: '#15263d',
+							color: '#fff'
+						}
+					},
 					collapse: {
 						enabled: true,
 						template: ""
@@ -58,7 +85,36 @@
 					{
 						label: "Apple",
 						value: "apple",
-						items: null
+						items: [
+							{
+								label: "Cookie",
+								value: "cookie",
+								items: [
+									{
+										label: "Donut",
+										value: "donut",
+										items: [
+											{
+												label: "Donut",
+												value: "donut",
+												items: null
+											}
+										]
+									}
+								]
+							},
+							{
+								label: "Eggroll",
+								value: "eggroll",
+								items: [
+									{
+										label: "Donut",
+										value: "donut",
+										items: null
+									}
+								]
+							}
+						]
 					},
 					{
 						label: "Banana",
@@ -71,18 +127,30 @@
 									{
 										label: "Donut",
 										value: "donut",
-										items: null
+										items: [
+											{
+												label: "Donut",
+												value: "donut",
+												items: null
+											}
+										]
 									}
 								]
 							},
 							{
 								label: "Eggroll",
 								value: "eggroll",
-								items: null
+								items: [
+									{
+										label: "Donut",
+										value: "donut",
+										items: null
+									}
+								]
 							}
 						]
 					}
-				])
+				], true)
 			});
 		</script>
 	</body>
