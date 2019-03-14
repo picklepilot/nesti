@@ -407,9 +407,9 @@
 
 			_listItemTemplate (child, i, labelsAsValues)
 			{
-				var html = (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
+				var html = "<div>" + (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
 					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;float:left;\" />" +
-					"<label class=\"text-small\" for=\"" + this._slugify(child.label) + "-" + i + "\">" + child.label + "</label>";
+					"<label class=\"text-small\" for=\"" + this._slugify(child.label) + "-" + i + "\">" + child.label + "</label>" + "</div>";
 				return html;
 			},
 
