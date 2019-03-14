@@ -393,7 +393,7 @@
 
 			_makeTier: function (items, labelsAsValues)
 			{
-				this._html.push("<ul>");
+				this._html.push("<ul style=\"padding-left: 18px;\">");
 				items.forEach((child, i) => {
 					this._html.push("<li>");
 					this._html.push(this._listItemTemplate(child, i, labelsAsValues));
