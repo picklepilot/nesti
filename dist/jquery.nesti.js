@@ -46,8 +46,8 @@
 				collapse: {
 					enabled: false,
 					speed: 250,
-					collapseTemplate: "<i class=\"fas fa-minus text-smaller position-relative nesti-toggle nesti-toggle-collapse\" style=\"top: -2px;font-size: .8rem;\"></i>",
-					expandTemplate: "<i class=\"fas fa-plus text-smaller position-relative nesti-toggle nesti-toggle-expand\" style=\"top: -2px;font-size: .8rem;\"></i>"
+					collapseTemplate: "<i class=\"fas fa-minus text-smaller position-relative nesti-toggle nesti-toggle-collapse\" style=\"top: -2px;font-size: .6rem;\"></i>",
+					expandTemplate: "<i class=\"fas fa-plus text-smaller position-relative nesti-toggle nesti-toggle-expand\" style=\"top: -2px;font-size: .6rem;\"></i>"
 				},
 				onChange: null
 			};
@@ -416,7 +416,7 @@
 			_listItemTemplate (child, i, labelsAsValues)
 			{
 				var html = (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
-					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" />" +
+					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;\" />" +
 					"<label class=\"text-small\" for=\"" + this._slugify(child.label) + "-" + i + "\">" + child.label + "</label>";
 				return html;
 			},
