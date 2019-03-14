@@ -46,8 +46,8 @@
 				collapse: {
 					enabled: false,
 					speed: 250,
-					collapseTemplate: "<i class=\"fas fa-minus text-smaller position-relative nesti-toggle nesti-toggle-collapse\" style=\"top: -2px;font-size: .6rem;\"></i>",
-					expandTemplate: "<i class=\"fas fa-plus text-smaller position-relative nesti-toggle nesti-toggle-expand\" style=\"top: -2px;font-size: .6rem;\"></i>"
+					collapseTemplate: "<i class=\"fas fa-minus text-smaller position-relative nesti-toggle nesti-toggle-collapse\" style=\"font-size: .6rem;\"></i>",
+					expandTemplate: "<i class=\"fas fa-plus text-smaller position-relative nesti-toggle nesti-toggle-expand\" style=\"font-size: .6rem;\"></i>"
 				},
 				onChange: null
 			};
