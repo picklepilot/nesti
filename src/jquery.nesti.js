@@ -35,6 +35,12 @@
 						boxSizing: "border-box"
 					}
 				},
+				listItem: {
+					css: {
+						display: "flex",
+						alignItems: "center"
+					}
+				},
 				collapse: {
 					enabled: false,
 					speed: 250,
@@ -386,11 +392,18 @@
 
 				var newHTML = $(this._html.join(""));
 				newHTML.first("ul").attr("id", this.element.id);
+				newHTML.find('.list-item-template').css(this.settings.listItem.css);
 				document.getElementById(this.element.id).innerHTML = newHTML.html();
 				this._dressElement();
 				this.initHandlers();
 			},
 
+			/**
+			 *
+			 * @param items
+			 * @param labelsAsValues
+			 * @private
+			 */
 			_makeTier: function (items, labelsAsValues)
 			{
 				this._html.push("<ul style=\"padding-left: 18px;\">");
@@ -407,7 +420,7 @@
 
 			_listItemTemplate (child, i, labelsAsValues)
 			{
-				var html = "<div style=\"display: flex; align-items: center;\">" + (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
+				var html = "<div class=\"list-item-template\">" + (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
 					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;margin-left:8px;\" />" +
 					"<label class=\"text-small\" for=\"" + this._slugify(child.label) + "-" + i + "\" style=\"margin-bottom:0;\">" + child.label + "</label>" + "</div>";
 				return html;

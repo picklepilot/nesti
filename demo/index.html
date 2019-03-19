@@ -44,26 +44,8 @@
 
 		<script>
 			$(function() {
-				$("#list").nesti({
-					propertyName: "a custom value",
-					filterable: true,
-					filter: {
-						css: {
-							position: 'sticky',
-							top: 0,
-							width: '100%',
-							padding: '10px 10px',
-							border: 'none',
-							background: '#dddddd'
-						}
-					},
-					onChange: () => {
-						console.log('DO THINGS!');
-					}
-				});
 
 				$("#list2").nesti({
-					propertyName: "a custom value",
 					filterable: true,
 					filter: {
 						css: {
@@ -76,11 +58,42 @@
 							color: '#fff'
 						}
 					},
+					listItem: {
+						css: {
+							borderBottom: '1px solid rgba(0,0,0,.25)',
+							padding: '4px 0'
+						}
+					},
 					collapse: {
 						enabled: true,
 						template: ""
 					}
 				});
+
+				$("#list").nesti({
+					filterable: true,
+					filter: {
+						css: {
+							position: 'sticky',
+							top: 0,
+							width: '100%',
+							padding: '10px 10px',
+							border: 'none',
+							background: '#dddddd'
+						}
+					},
+					listItem: {
+						css: {
+							borderBottom: '1px solid rgba(0,0,0,.25)',
+							padding: '4px 0'
+						}
+					},
+					onChange: () => {
+						console.log('DO THINGS!');
+					}
+				});
+
+
 				$("#list2").nesti("api.buildList", [
 					{
 						label: "Apple",
