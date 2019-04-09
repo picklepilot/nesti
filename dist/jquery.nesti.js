@@ -52,8 +52,8 @@
 				collapse: {
 					enabled: false,
 					speed: 250,
-					collapseTemplate: "<i class=\"fas fa-minus text-smaller position-relative nesti-toggle nesti-toggle-collapse\" style=\"font-size: .6rem;\"></i>",
-					expandTemplate: "<i class=\"fas fa-plus text-smaller position-relative nesti-toggle nesti-toggle-expand\" style=\"font-size: .6rem;\"></i>"
+					collapseTemplate: "<i class=\"fas fa-minus-circle text-smaller position-relative nesti-toggle nesti-toggle-collapse\" style=\"font-size: .6rem;\"></i>",
+					expandTemplate: "<i class=\"fas fa-plus-circle text-smaller position-relative nesti-toggle nesti-toggle-expand\" style=\"font-size: .6rem;\"></i>"
 				},
 				onChange: null
 			};
@@ -363,7 +363,7 @@
 			collapse: function ($currentCheckboxParentLI)
 			{
 				$currentCheckboxParentLI.find("ul").first().slideUp(this.settings.collapse.speed);
-				$currentCheckboxParentLI.find(".fa-minus").first().replaceWith(this.settings.collapse.expandTemplate);
+				$currentCheckboxParentLI.find(".fa-minus-circle").first().replaceWith(this.settings.collapse.expandTemplate);
 				this._initToggleHandlers();
 			},
 
@@ -374,7 +374,7 @@
 			expand: function ($currentCheckboxParentLI)
 			{
 				$currentCheckboxParentLI.find("ul").first().slideDown(this.settings.collapse.speed);
-				$currentCheckboxParentLI.find(".fa-plus").first().replaceWith(this.settings.collapse.collapseTemplate);
+				$currentCheckboxParentLI.find(".fa-plus-circle").first().replaceWith(this.settings.collapse.collapseTemplate);
 				this._initToggleHandlers();
 			},
 
