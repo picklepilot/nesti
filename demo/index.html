@@ -34,10 +34,12 @@
 					<input type="checkbox" data-value="Milk"> <label>Milk</label>
 				</li>
 			</ul>
+
 		</div>
 
 		<div style="background: #293751; color: white; max-width: 350px; height: 250px; overflow: scroll;">
 			<ul id="list2" style="padding: 10px; padding-top: 0;"></ul>
+			<a href="javascript:void(0);" onclick="$('#list2').nesti('api.reset')">Reset</a>
 		</div>
 
 
@@ -67,6 +69,9 @@
 					collapse: {
 						enabled: true,
 						template: ""
+					},
+					onChange: () => {
+						console.log('Collected..', $('#list2').nesti('api.collect'));
 					}
 				});
 

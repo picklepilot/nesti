@@ -92,6 +92,9 @@
 				},
 				"api.buildList": function (data, labelsAsValues = false) {
 					this.buildList(data, labelsAsValues);
+				},
+				"api.reset": function () {
+					this.tree.find("input:checkbox:checked").prop('checked', false);
 				}
 			};
 
