@@ -421,7 +421,7 @@
 			_listItemTemplate (child, i, labelsAsValues)
 			{
 				var html = "<div class=\"list-item-template\">" + (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
-					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;margin-left:8px;\" />" +
+					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;margin-left:8px;\" " + (child.checked ? 'checked' : '' ) + " />" +
 					"<label class=\"leaf-label\" for=\"" + this._slugify(child.label) + "-" + i + "\" style=\"margin-bottom:0;\">" + child.label + "</label>" + "</div>";
 				return html;
 			},
