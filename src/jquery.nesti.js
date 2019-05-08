@@ -223,7 +223,7 @@
 			 */
 			_makeFilter: function () {
 				var _self = this;
-				$("<input type=\"text\" class=\"form-control form-control-sm nesti-filter-input\" placeholder=\"Find a filter..\" id=\"" + this._targetId + "-filter-input\">")
+				$("<input type=\"text\" class=\"form-control form-control-sm nesti-filter-input\" placeholder=\"Find a filter..\" id=\"" + this._targetId + "-filter-input\" autocomplete=\"false\">")
 					.css(_self.settings.filter.css)
 					.insertBefore(this.element);
 				$("#" + this._targetId + "-filter-input").on("keyup", function () {
