@@ -102,7 +102,8 @@
 					this.buildList(data, labelsAsValues);
 				},
 				"api.reset": function () {
-					this.tree.find("input:checkbox:checked").prop('checked', false);
+					this.tree.find("input:checkbox").prop('checked', false);
+					this.tree.find("input:checkbox").prop('indeterminate', false);
 				}
 			};
 
