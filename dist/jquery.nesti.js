@@ -190,12 +190,11 @@
 						_self._lookBackward(currentCheckboxParentLI);
 					}
 
-
 					/**
 					 * Finally, hook our custom onChange event.
 					 */
 					if (typeof _self.settings.onChange === "function") {
-						_self.settings.onChange.call();
+						_self._debounce(_self.settings.onChange.call(), 1000);
 					}
 				});
 
@@ -445,7 +444,34 @@
 					.replace(/\-\-+/g, "-")         // Replace multiple - with single -
 					.replace(/^-+/, "")             // Trim - from start of text
 					.replace(/-+$/, "");            // Trim - from end of text
+			},
+
+			/**
+			 * My guess is that this is one of the most popular debounce functions out there.
+			 * Thanks https://davidwalsh.name/javascript-debounce-function
+			 *
+			 * @param 	func
+			 * @param 	wait
+			 * @param 	immediate
+			 * @return 	{Function}
+			 * @private
+			 */
+			_debounce (func, wait, immediate)
+			{
+				let timeout;
+				return function() {
+					let context = this, args = arguments;
+					let later = function() {
+						timeout = null;
+						if (!immediate) func.apply(context, args);
+					};
+					let callNow = immediate && !timeout;
+					clearTimeout(timeout);
+					timeout = setTimeout(later, wait);
+					if (callNow) func.apply(context, args);
+				};
 			}
+
 		} );
 
 	/**
