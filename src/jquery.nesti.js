@@ -94,7 +94,8 @@
 					this.buildList(data, labelsAsValues);
 				},
 				"api.reset": function () {
-					this.tree.find("input:checkbox:checked").prop('checked', false);
+					this.tree.find("input:checkbox").prop('checked', false);
+					this.tree.find("input:checkbox").prop('indeterminate', false);
 				}
 			};
 
@@ -221,7 +222,7 @@
 			 */
 			_makeFilter: function () {
 				var _self = this;
-				$("<input type=\"text\" class=\"form-control form-control-sm nesti-filter-input\" placeholder=\"Find a filter..\" id=\"" + this._targetId + "-filter-input\">")
+				$("<input type=\"text\" class=\"form-control form-control-sm nesti-filter-input\" placeholder=\"Find a filter..\" id=\"" + this._targetId + "-filter-input\" autocomplete=\"false\">")
 					.css(_self.settings.filter.css)
 					.insertBefore(this.element);
 				$("#" + this._targetId + "-filter-input").on("keyup", function () {
@@ -423,7 +424,7 @@
 			_listItemTemplate (child, i, labelsAsValues)
 			{
 				var html = "<div class=\"list-item-template\">" + (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
-					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;margin-left:8px;\" />" +
+					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;margin-left:8px;\" " + (child.checked ? 'checked' : '' ) + " />" +
 					"<label class=\"leaf-label\" for=\"" + this._slugify(child.label) + "-" + i + "\" style=\"margin-bottom:0;\">" + child.label + "</label>" + "</div>";
 				return html;
 			},
