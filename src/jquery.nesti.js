@@ -187,7 +187,8 @@
 					 * Finally, hook our custom onChange event.
 					 */
 					if (typeof _self.settings.onChange === "function") {
-						_self._debounce(_self.settings.onChange.call(), 1000);
+						//_self._debounce(_self.settings.onChange.call(), 1000);
+						_self.settings.onChange.call();
 					}
 				});
 
