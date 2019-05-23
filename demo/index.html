@@ -49,6 +49,7 @@
 
 				$("#list2").nesti({
 					filterable: true,
+					useParentValueWhenFull: true,
 					filter: {
 						css: {
 							position: 'sticky',
@@ -87,6 +88,7 @@
 							background: '#dddddd'
 						}
 					},
+					useParentValueWhenFull: true,
 					listItem: {
 						css: {
 							borderBottom: '1px solid rgba(0,0,0,.25)',
@@ -101,33 +103,37 @@
 
 				$("#list2").nesti("api.buildList", [
 					{
-						label: "Apple",
-						value: "apple",
+						label: "Business One",
+						value: "Business One",
 						items: [
 							{
-								label: "Cookie",
-								value: "cookie",
+								label: "Division One",
+								value: "Division One",
 								items: [
 									{
-										label: "Donut",
-										value: "donut",
-										items: [
-											{
-												label: "Donut",
-												value: "donut",
-												items: null
-											}
-										]
+										label: "Commodity One",
+										value: "Commodity One",
+										items: null
+									},
+									{
+										label: "Commodity Two",
+										value: "Commodity Two",
+										items: null
+									},
+									{
+										label: "Commodity Three",
+										value: "Commodity Three",
+										items: null
 									}
 								]
 							},
 							{
-								label: "Eggroll",
-								value: "eggroll",
+								label: "Division Two",
+								value: "Division Two",
 								items: [
 									{
-										label: "Donut",
-										value: "donut",
+										label: "Commodity Four",
+										value: "Commodity Four",
 										items: null
 									}
 								]
@@ -135,33 +141,27 @@
 						]
 					},
 					{
-						label: "Banana",
-						value: "banana",
+						label: "Business Two",
+						value: "Business Two",
 						items: [
 							{
-								label: "Cookie",
-								value: "cookie",
+								label: "Division Three",
+								value: "Division Three",
 								items: [
 									{
-										label: "Donut",
-										value: "donut",
-										items: [
-											{
-												label: "Donut",
-												value: "donut",
-												items: null
-											}
-										]
+										label: "Commodity Five",
+										value: "Commodity Five",
+										items:null
 									}
 								]
 							},
 							{
-								label: "Eggroll",
-								value: "eggroll",
+								label: "Division Four",
+								value: "Division Four",
 								items: [
 									{
-										label: "Donut",
-										value: "donut",
+										label: "Commodity Six",
+										value: "Commodity Six",
 										items: null
 									}
 								]

@@ -33,6 +33,7 @@
 		var pluginName = "nesti",
 			defaults = {
 				filterable: false,
+				useParentValueWhenFull: false,
 				filter: {
 					css: {
 						position: "sticky",
@@ -91,9 +92,35 @@
 			/***** PUBLIC API METHODS *****/
 			this.api = {
 				"api.collect": function () {
-					return Array.from(this.tree.find("input.leaf:checkbox:checked").map(function () {
-						return this.dataset.value;
-					}));
+					let _self = this;
+					let valuesToUse = [];
+
+					function _nestedSelector ($el) {
+						[...$el.find("> .list-item-template > input:checkbox")].forEach(_ => { // for each immediate checkbox child of current element
+							if (_self._isLeaf($(_).closest('.looksee')) && _.checked) { // if the current elemenet's parent <li> is a leaf item and is checked, store the value and move on
+								valuesToUse.push(_.dataset.value);
+							}
+							else if (_self._allChildrenChecked($(_).closest('.looksee'))) { // if the current element's parent <li> contains all checked checkboxes
+								valuesToUse.push(_.dataset.value); // push the current element's value to the array
+							}
+							else if (!_self._isLeaf($(_).closest('.looksee'))) {
+								_nestedSelector($(_).parent().next().find("> .looksee")); // otherwise, run the _nestedSelector function on the current element's parent <li>
+							}
+							else {
+								return false;
+							}
+						});
+					}
+
+					if (this.settings.useParentValueWhenFull) {
+						_nestedSelector(this.tree.find("> .looksee"));
+						return valuesToUse;
+					}
+					else {
+						return Array.from(this.tree.find("input.leaf:checkbox:checked").map(function () {
+							return this.dataset.value;
+						}));
+					}
 				},
 				"api.filter": function (str) {
 					this.filter(str);
@@ -300,7 +327,10 @@
 			 * @private
 			 */
 			_allChildrenChecked: function ($currentCheckboxParentLI) {
-				return $currentCheckboxParentLI.find("li").find("input:checkbox:checked").length === $currentCheckboxParentLI.find("li").find("input:checkbox").length;
+				return ($currentCheckboxParentLI.find("li").find("input[type=\"checkbox\"]:checked").length > 0)
+					&& ($currentCheckboxParentLI.find("li").find("input[type=\"checkbox\"]:checked").length > 0)
+					&& ($currentCheckboxParentLI.find("li").find("input[type=\"checkbox\"]:checked").length
+						=== $currentCheckboxParentLI.find("li").find("input[type=\"checkbox\"]").length);
 			},
 
 			/**
@@ -334,7 +364,7 @@
 			 * @private
 			 */
 			_isRoot: function ($currentCheckboxParentLI) {
-				return $currentCheckboxParentLI.parent("#list").length;
+				return $currentCheckboxParentLI.parent("#" + this.element.id).length;
 			},
 
 			/**
@@ -420,7 +450,7 @@
 			{
 				this._html.push("<ul style=\"padding-left: 18px;\">");
 				items.forEach((child, i) => {
-					this._html.push("<li>");
+					this._html.push("<li class=\"looksee\" id=\"" + this._slugify(child.label) + "-parent\">");
 					this._html.push(this._listItemTemplate(child, i, labelsAsValues));
 					if (child.items) {
 						this._makeTier(child.items, labelsAsValues);
@@ -433,7 +463,7 @@
 			_listItemTemplate (child, i, labelsAsValues)
 			{
 				var html = "<div class=\"list-item-template\">" + (child.items && this.settings.collapse.enabled ? this.settings.collapse.collapseTemplate : "") +
-					"<input class=\"" + (!child.items ? "leaf" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;margin-left:8px;\" " + (child.checked ? 'checked' : '' ) + " />" +
+					"<input class=\"" + (!child.items ? "leaf" : "") + (this._isRoot($(child)) ? "root" : "") + "\" id=\"" + this._slugify(child.label) + "-" + i + "\" data-value=\"" + (labelsAsValues ? child.label : child.value) + "\" data-id=\"" + this._slugify(child.label) + "-" + i + "\" type=\"checkbox\" style=\"margin:4px;margin-left:8px;\" " + (child.checked ? 'checked' : '' ) + " />" +
 					"<label class=\"leaf-label\" for=\"" + this._slugify(child.label) + "-" + i + "\" style=\"margin-bottom:0;\">" + child.label + "</label>" + "</div>";
 				return html;
 			},
