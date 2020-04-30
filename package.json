@@ -25,7 +25,7 @@
   "homepage": "http://jkaczmar.com",
   "license": "MIT",
   "dependencies": {
-    "jquery": ">=1.5.1"
+    "jquery": ">=3.5.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
